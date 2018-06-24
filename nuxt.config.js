@@ -1,5 +1,4 @@
 const nodeExternals = require('webpack-node-externals')
-const resolve = (dir) => require('path').join(__dirname, dir)
 
 module.exports = {
   /*
@@ -18,32 +17,27 @@ module.exports = {
     ]
   },
   plugins: [
-    { src: '~/plugins/vuetify.js', ssr: true },
     { src: '~/plugins/vue-socket-io.js', ssr: false }
   ],
   css: [
-    '~/assets/style/app.styl'
+    '~/assets/css/cssgram.css'
   ],
+  modules: [
+    '@nuxtjs/vuetify'
+  ],
+  vuetify: {
+    // Vuetify options
+    //  theme: { }
+  },
   /*
   ** Customize the progress bar color
   */
-  loading: { color: '#3B8070' },
+  loading: '~/components/PLoading.vue',
   /*
   ** Build configuration
   */
   build: {
-    babel: {
-      plugins: [
-        ["transform-imports", {
-          "vuetify": {
-            "transform": "vuetify/es5/components/${member}",
-            "preventFullImport": true
-          }
-        }]
-      ]
-    },
     vendor: [
-      '~/plugins/vuetify.js',
       '~/node_modules/vue-socket.io'
     ],
     extractCSS: true,
